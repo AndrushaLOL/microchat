@@ -21,7 +21,7 @@ class ImageUploadAPI(Resource):
         storage = firebase.storage()
         storage.child('images/' + file_name).put(file_name)
         with urlopen(utils.KOTIK_URL) as f:
-            response = flask.make_response(f)
+            response = flask.make_response(f.read())
         response.headers.set('Content-Type', 'image/jpeg')
         return response
 
