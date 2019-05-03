@@ -22,7 +22,7 @@ class ImageUploadAPI(Resource):
         storage.child('images/' + file_name).put(file_name)
         with urlopen(utils.KOTIK_URL) as f:
             response = flask.make_response(f)
-        response.header.set('Content-Type', 'image/jpeg')
+        response.headers.set('Content-Type', 'image/jpeg')
         return response
 
 class Hello(Resource):
