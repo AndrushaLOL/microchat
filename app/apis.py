@@ -15,10 +15,9 @@ class ImageUploadAPI(Resource):
         args = parse.parse_args()
         image_file = args['file']
         file_name = secure_filename(image_file.filename)
-        path_to_file = os.path.join(os.path.dirname(__file__), 'images', file_name)
-        image_file.save(path_to_file)
+        image_file.save(file_name)
         storage = firebase.storage()
-        storage.child('images/' + file_name).put(path_to_file)
+        storage.child('images/' + file_name).put(file_name)
 
 
 class Hello(Resource):
