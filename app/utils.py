@@ -1,1 +1,3 @@
-KOTIK_URL = 'https://pm1.narvii.com/6710/c77284e6a56138e57f0d671f6abc2e74e4fadd2a_hq.jpg'
+import os
+
+KOTIK_URL = os.environ['KOTIK_URL'] or 'https://klike.net/uploads/posts/2018-10/1539499499_29.jpg'
