@@ -31,7 +31,7 @@ class Hello(Resource):
 
 class ImageView(Resource):
     def get(self, fname):
-        return render_template('image_view.html', {'file_name': secure_filename(fname)})
+        return render_template('image_view.html', file_name=secure_filename(fname))
 
 api.add_resource(Hello, '/api')
 api.add_resource(ImageView, '/image/<string:fname>')

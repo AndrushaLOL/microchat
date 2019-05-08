@@ -18,5 +18,5 @@ firebase = pyrebase.initialize_app(firebase_config)
 
 
 
-from app import routes, models, apis, utils
+from app import routes, models, apis, utils, forms, predict
 
