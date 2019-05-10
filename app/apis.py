@@ -4,6 +4,7 @@ from flask import request, redirect, flash, render_template
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import FileStorage
 from urllib.request import urlopen
+from app.rescale import transform
 
 from app import api, firebase, utils
 
@@ -18,13 +19,11 @@ class ImageUploadAPI(Resource):
         image_file = args['file']
         file_name = secure_filename(image_file.filename)
         image_file.save(file_name)
-        storage = firebase.storage()
-        storage.child('images/' + file_name).put(file_name)
-        with urlopen(utils.KOTIK_URL) as f:
-            response = flask.make_response(f.read())
+        # storage = firebase.storage()
+        # storage.child('images/' + file_name).put(file_name)
+        response = flask.make_response(transform(file_name))
         response.headers.set('Content-Type', 'image/jpeg')
         return response
-
 class Hello(Resource):
     def get(self):
         return 'Hello Rest!'
